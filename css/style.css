@@ -1,0 +1,139 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.done-true{
+    text-decoration: line-through;
+    color: grey;
+}
+#done {
+	position: absolute;
+	top: 505px;
+	left: 667px;
+}
+#subcategory {
+	display: inline;
+	position: relative;
+	margin-top: 5px;
+}
+.subsubcategory {
+	left: 65px;
+	position: relative;
+	margin-top: 5px
+}
+#note {
+    position: absolute;
+    top: 7em;
+    left: 30em;
+    width: 35em;
+    height: 18em;
+    z-index: 1;
+    padding-left:0;
+	padding-top:0;
+	padding-bottom:0.4em;
+	padding-right: 0.4em;
+	font-size: 20px;
+}
+#background{
+	z-index: -2;
+}
+.btn{
+	top: 10px;
+	z-index: 4;
+}
+.wideInput{
+    text-align: left;
+    padding-left:0;
+    padding-top:0;
+    padding-bottom:0.4em;
+    padding-right: 0.4em;
+    width: 400px;
+    height: 200px;
+}
+#category {
+	margin-top: 5px;
+}
+.bottonbtnadd {
+	position: absolute;
+	top: 505px;
+}
+.bottonbtnedit {
+	position: absolute;
+	top: 505px;
+	left: 150px;
+}
+.bottonbtnname {
+	position: absolute;
+	top: 505px;
+	left: 280px;
+}
+.button {
+	width:35px; 
+	height:35px;
+}
+img {
+	vertical-align: center;
+	padding: 1px;
+	margin: auto;
+	z-index: 2;
+}
+#save {
+	position: absolute;
+	top: 505px;
+	left: 600px;
+}
+#secondarrow {
+	margin-top: 10px;
+	left: 50px;
+	z-index: 4;
+	margin-left: 40px;
+}
+.ssc {
+	position: absolute;
+	top: 0px;
+}
+.alert {
+	font-size: 25px;
+    vertical-align: top;
+    margin-top: 10px;
+    position: absolute;
+    top: 545px;
+    width: 1285px;
+}
+button.close {
+	margin-right: 20px;
+}
+#apptnote {
+	margin-left: 600px;
+}
+.btn-warning {
+	margin-top: 5px;
+}
+.btncancel {
+	margin-top: -2.5px;
+}
+.templatedisplayed {
+	width: 34em;
+	height: 15em;
+}
+#templateinput {
+	position: inline;
+	width: 20px;
+}
+#saved {
+	position: absolute;
+	margin-left: 500px;
+	margin-top: 150px;
+	
+}
+.edit {
+	position: absolute;
+	margin-left: 500px;
+	margin-top: 150px;
+}
+.cancel {
+	margin-top: 0px;
+	margin-right: 740px;
+}
+#btncomplete {
+	left: 380px;
+}

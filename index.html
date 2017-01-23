@@ -1,0 +1,147 @@
+<!doctype html>
+<html ng-app="DocWriter">
+<title>Translator</title>
+<head>
+<meta charset="utf-8" />
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.1/angular.js" data-semver="1.4.1"></script>
+    <script src="js/app.js"></script>
+    <script src="js/shared/ui-bootstrap-tpls-0.13.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body class="well" id="background">
+<form>
+<div ng-controller="MainCtrl">
+	<h1 ng-cloak>Welcome to Translate, {{ name }} <h1>
+		<h2 id="apptnote" ng-cloak>
+
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    {{ language1 }}
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			    <li><a href="#">Bosnian</a></li>
+			    <li><a href="#">Spanish</a></li>
+			    <li><a href="#">English</a></li>
+			  </ul>
+			  to
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    {{ language2 }}
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+			    <li><a href="#">Bosnian</a></li>
+			    <li><a href="#">Spanish</a></li>
+			    <li><a href="#">English</a></li>
+			  </ul>
+
+			</div>
+		</h2>
+
+		<br>
+
+		<div my-directive></div>
+	
+		<div id='MicrosoftTranslatorWidget' class='Dark' style='color:white;background-color:#555555'></div>
+		<script type='text/javascript'>setTimeout(function(){{var s=document.createElement('script');s.type='text/javascript';s.charset='UTF-8';s.src=((location && location.href && location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&ctf=False&ui=true&settings=Manual&from=';var p=document.getElementsByTagName('head')[0]||document.documentElement;p.insertBefore(s,p.firstChild); }},0);
+		</script>
+
+			<!-- Text box goes aqui -->
+	<textarea ng-model="note" ng-model-options="{ debounce: 1000 }" class="wideinput" id="note" placeholder="Translation goes here">
+		{{ text }}
+	</textarea>
+
+	<!-- First degree category -->
+	<div ng-repeat="cat in templates" ng-show="!showTemplateForm">
+		{{ text }}
+		<button type="button" class="btn btn-large btn-primary" id="category" ng-click="openCategory($index)" ng-show="thisindex == -1 || thisindex == $index" ng-cloak>
+			{{ cat.category }}
+		</button>
+
+		<!-- Second degree category -->
+		<div ng-show="thisindex == $index" >
+			<img src="img/glyphicons-218-circle-arrow-right.png" alt="Right Arrow" style="width:20px;height:20px;" ng-cloak></img>
+			<div id="subcategory" ng-repeat="subcat in cat.subcategories">
+				<button type="button" class="btn btn-warning" ng-click="openSubCategory($index)" ng-show="thissubindex == -1 || thissubindex == $index" ng-cloak>
+					{{ subcat.subcategory }}
+				</button>
+
+				<!-- Third degree category -->
+				<div ng-show="thissubindex == $index" >
+					<img src="img/glyphicons-218-circle-arrow-right.png" alt="Right Arrow" style="width:20px;height:20px;" id="secondarrow" ng-cloak></img>
+					<div class="ssc">
+						<div class="subsubcategory" ng-repeat="subsubcat in subcat.subsubcategories">
+							<!--templates[thisindex].subcategories[thissubindex].subsubcategories[$index].subsubcategory-->
+							<button type="button" class="btn btn-success" ng-click="openTemplateForm(); " ng-cloak>
+								{{ subsubcat.subsubcategory }}
+							</button>
+
+						</div>
+					</div>
+
+
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div ng-show="showTemplateForm">
+		
+		<form name="addition">
+        <div class="modal-header">
+            <h3 class="modal-title" ng-cloak>Template for {{ title }}</h3>
+            <button class="btn btn-default editbutton edit" type="button" ng-show="!showTemplateFormWithin" ng-click="openTemplateFormWithin()" ng-cloak>Edit</button>
+            <button id="saved" class="btn btn-primary editbutton" type="button" ng-show="showTemplateFormWithin" ng-click="closeTemplateFormWithin()" ng-cloak>Save</button>
+        </div>
+        <div class="modal-body">
+       
+
+		<div id="thistemplate" ng-show='!showTemplateFormWithin'></div> 
+            <!--<textarea id="edit" class="wideInput templatedisplayed" name="addition" ng-model="template" ng-show="!showTemplateFormWithin" readonly></textarea>-->
+            <textarea class="wideInput templatedisplayed" name="addition" ng-model="template" ng-show="showTemplateFormWithin" ng-cloak></textarea>
+            
+        
+    
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" type="submit" name="addition" ng-click="addToNote()" ng-show="!showTemplateFormWithin" ng-cloak>Add</button>
+            <button class="btn btn-warning cancel" type="button" ng-click="closeTemplateForm()" ng-show="!showTemplateFormWithin" ng-cloak>Cancel</button>
+        </div>
+        </form> 
+	</div>
+
+	<br>
+	<div class="btn btn-large btn-primary bottonbtnadd">
+		Map
+	</div>
+	<div class="btn btn-large btn-primary bottonbtnedit">
+		Photos
+	</div>
+	<div class="btn btn-large btn-success btn-primary bottonbtnname" ng-click="publish(text)">
+		Publish
+	</div>
+	<div id="btncomplete" class="btn btn-large btn-success btn-primary bottonbtnname btncomplete" ng-click="goQualtrics()">
+		Complete Interaction
+	</div>
+
+
+
+
+</div>
+
+</form>
+
+
+</body>
+</html>
